@@ -1,5 +1,6 @@
 node_modules
 /build
+dist/
 /.svelte-kit
 /package
 .env
@@ -15,3 +16,5 @@ vite.config.ts.timestamp-*
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+
+src/lib/api.ts
