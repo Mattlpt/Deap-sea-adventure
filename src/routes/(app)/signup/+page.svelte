@@ -25,6 +25,11 @@
       <span class="">Continue with GitHub</span>
     </div>
 
+    <div class="w-full text-center">
+      By clicking continue, you agree to our
+      <a class="font-medium underline" href="../tos">Terms of Service</a>.
+    </div>
+
   </div>
 
 
