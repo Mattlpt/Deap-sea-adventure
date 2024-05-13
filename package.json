@@ -15,6 +15,8 @@
     "test:unit": "vitest"
   },
   "dependencies": {
+    "@auth/core": "^0.31.0",
+    "@auth/sveltekit": "^1.1.0",
     "@prisma/client": "^5.13.0",
     "@unovis/svelte": "^1.4.0",
     "bcryptjs": "^2.4.3",
@@ -60,5 +62,6 @@
   "type": "module",
   "prisma": {
     "seed": "tsx prisma/seed.ts"
-  }
+  },
+  "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b"
 }
