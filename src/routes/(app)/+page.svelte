@@ -1,5 +1,5 @@
-<script>
-  import * as Card from '$lib/components/ui/card/index'
+<script lang="ts">
+  import * as Card from '$lib/components/ui/card'
   import Revenue from '$lib/components/Revenue.svelte'
 </script>
 

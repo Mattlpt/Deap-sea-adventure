@@ -1,7 +1,11 @@
 <script>
-  import '../app.pcss'
+  import { page } from '$app/stores';
+  import '../app.pcss';
+  const title = $page.data?.title;
 </script>
 
-<div class="flex h-screen w-screen items-center justify-center">
-  <slot />
-</div>
+<svelte:head>
+  <title>Deep Trading{title ? ` • ${title}` : ''}</title>
+</svelte:head>
+
+<slot />

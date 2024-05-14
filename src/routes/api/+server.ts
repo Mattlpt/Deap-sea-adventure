@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit'
 
-export async function POST({ cookies }) {
+export async function GET({ cookies }) {
   const userid = cookies.get('userid')
   console.log(userid)
 
