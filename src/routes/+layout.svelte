@@ -1,7 +1,8 @@
 <script>
-  import { page } from '$app/stores';
-  import '../app.pcss';
-  const title = $page.data?.title;
+  import { page } from '$app/stores'
+  import '../app.pcss'
+
+  const title = $page.data?.title
 </script>
 
 <svelte:head>
