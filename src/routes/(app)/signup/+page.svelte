@@ -18,7 +18,7 @@
 </script>
 
 <div class="grid gap-6 px-2 lg:w-1/2 xl:w-2/5 2xl:w-1/3">
-  <h1 class="px-2 text-3xl font-bold">Create an account</h1>
+  <h1 class="px-2 text-3xl font-bold  w-full text-center">Create an account</h1>
   <form on:submit|preventDefault={onSubmit}>
     <div class="grid gap-2">
       <Label class="sr-only" for="email">Email</Label>
