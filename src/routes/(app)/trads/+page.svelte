@@ -1,19 +1,19 @@
 <script>
   let myBots = [
-    { id: 1, name: "Bot1" },
-    { id: 2, name: "Bot2" },
-    { id: 3, name: "Bot3" },
-    { id: 4, name: "Bot4" },
-    { id: 5, name: "Bot5" },
-    { id: 6, name: "Bot6" },
-    { id: 7, name: "Bot7" },
-    { id: 8, name: "Bot8" },
-    { id: 9, name: "Bot9" },
-    { id: 10, name: "Bot10" }
-  ];
+    { id: 1, name: 'Bot1' },
+    { id: 2, name: 'Bot2' },
+    { id: 3, name: 'Bot3' },
+    { id: 4, name: 'Bot4' },
+    { id: 5, name: 'Bot5' },
+    { id: 6, name: 'Bot6' },
+    { id: 7, name: 'Bot7' },
+    { id: 8, name: 'Bot8' },
+    { id: 9, name: 'Bot9' },
+    { id: 10, name: 'Bot10' },
+  ]
 
   function handleBotClick(id) {
-    window.location.href = `/trads/${id}`;
+    window.location.href = `/trads/${id}`
   }
 </script>
 

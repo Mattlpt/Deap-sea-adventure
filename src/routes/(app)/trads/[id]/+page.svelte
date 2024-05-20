@@ -1,31 +1,32 @@
 <script>
 
-  import { Button } from '$lib/components/ui/button/index'
+  import { Button } from '$lib/components/ui/button'
 
-  export let data;
+  export let data
   //Check if id is an integer
-  console.log(`Is ${data.botId} an integer ?`);
+  console.log(`Is ${data.botId} an integer ?`)
 
   let botInfos = [
-    { id: 1, name: "Revenue", value: "+12345 €"},
-    { id: 2, name: "Subscriptions", value: "+2350" },
-    { id: 3, name: "Sales", value: "+12234" },
-    { id: 4, name: "Active now", value: "+573" },
-  ];
+    { id: 1, name: 'Revenue', value: '+12345 €' },
+    { id: 2, name: 'Subscriptions', value: '+2350' },
+    { id: 3, name: 'Sales', value: '+12234' },
+    { id: 4, name: 'Active now', value: '+573' },
+  ]
 
   let recentSales = [
-    { id: 1, name: "Action", value: "+1.56"},
-    { id: 2, name: "Action", value: "-46.89" },
-    { id: 3, name: "Action", value: "+34.01" },
-    { id: 4, name: "Action", value: "+18.00" },
-  ];
+    { id: 1, name: 'Action', value: '+1.56' },
+    { id: 2, name: 'Action', value: '-46.89' },
+    { id: 3, name: 'Action', value: '+34.01' },
+    { id: 4, name: 'Action', value: '+18.00' },
+  ]
 
 </script>
 
 <div class="w-full h-full flex flex-col p-10 gap-5">
   <div class="w-full h-3/4 border-b-2 flex flex-row">
     <div class="w-3/4 border-2 border-gray-400 rounded-xl p-5">
-      <img class="object-cover" alt="graph" src="https://img.freepik.com/free-vector/gradient-stock-market-concept_23-2149166910.jpg">
+      <img alt="graph" class="object-cover"
+           src="https://img.freepik.com/free-vector/gradient-stock-market-concept_23-2149166910.jpg">
     </div>
     <div class="w-1/4 flex flex-col gap-3 p-5">
       <div class="h-5/6">
