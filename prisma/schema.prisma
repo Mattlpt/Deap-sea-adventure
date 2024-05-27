@@ -17,6 +17,7 @@ model User {
   passwordHash  String?
   accounts      Account[]
   sessions      Session[]
+  wallets       Wallet[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
@@ -59,4 +60,20 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+}
+
+model Wallet {
+  walletId String @id @default(cuid())
+  userId String
+  owner User @relation(fields: [userId], references: [id])
+  bots Bot[]
+}
+
+
+model Bot {
+  botId String @id @default(cuid())
+  name String
+  value Int
+  walletId String
+  wallet Wallet @relation(fields: [walletId], references: [walletId])
 }
