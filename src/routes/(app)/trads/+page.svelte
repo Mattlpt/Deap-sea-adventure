@@ -17,16 +17,14 @@
   }
 </script>
 
-<div class="w-full flex flex-col items-center">
-  <div class="w-3/4 flex flex-wrap gap-2 items-center justify-center">
+<div class="flex w-full flex-col items-center">
+  <div class="flex w-3/4 flex-wrap items-center justify-center gap-2">
     {#each myBots as bot}
-      <button class="px-4 py-3 border-2 w-1/5 flex flex-col rounded-md" on:click={() => handleBotClick(bot.id)}>
+      <button class="flex w-1/5 flex-col rounded-md border-2 px-4 py-3" on:click={() => handleBotClick(bot.id)}>
         <div>
           {bot.name}
         </div>
-        <div class="text-l font-bold">
-          Money gen. €
-        </div>
+        <div class="text-l font-bold">Money gen. €</div>
         <div>% with last month</div>
       </button>
     {/each}

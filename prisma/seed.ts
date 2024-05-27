@@ -13,7 +13,7 @@ async function main() {
       data: {
         name: u.name,
         email: u.email,
-        password: await bcrypt.hash(u.password, 12),
+        passwordHash: await bcrypt.hash(u.password, 12),
       },
     })
     console.log(`Created user ${user.name} with id: ${user.id}`)
