@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "prisma generate && vite build",
     "preview": "vite preview",
     "test": "npm run test:integration && npm run test:unit",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -63,6 +63,5 @@
   "type": "module",
   "prisma": {
     "seed": "tsx prisma/seed.ts"
-  },
-  "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b"
+  }
 }
