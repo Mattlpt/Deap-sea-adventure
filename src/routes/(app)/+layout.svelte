@@ -1,6 +1,6 @@
 <script lang="ts">
   import {
-    Building2,
+    Building2, BuildingIcon,
     Calendar,
     CircleUser,
     DoorOpen,
@@ -35,6 +35,7 @@
     ? [
         { href: '/home', icon: Home, label: 'Home' },
         { href: '/profile', icon: User2, label: 'Profile' },
+        { href: '/marketplace', icon: BuildingIcon, label: 'Marketplace' },
         { href: '/calendar', icon: Calendar, label: 'Calendrier' },
       ]
     : [
