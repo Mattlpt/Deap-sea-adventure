@@ -19,6 +19,7 @@
     "@auth/prisma-adapter": "^2.1.0",
     "@auth/sveltekit": "^1.1.0",
     "@prisma/client": "^5.14.0",
+    "@supabase/supabase-js": "^2.43.4",
     "@unovis/svelte": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "bits-ui": "^0.21.7",
