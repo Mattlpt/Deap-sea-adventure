@@ -1,7 +1,7 @@
 <script lang="ts">
   import {
-    Building2, BuildingIcon,
-    Calendar,
+    Building2,
+    BuildingIcon,
     CircleUser,
     DoorOpen,
     Home,
@@ -23,20 +23,19 @@
   import { SearchBar } from '$lib/components/search'
   import { NavBarItem } from '$lib/components/nav-bar-item'
   import { navigating } from '$app/stores'
-  import { signOut } from '@auth/sveltekit/client'
   import type { PageData } from './$types'
-  import type { Session } from '@auth/core/types'
 
   export let data: PageData
 
-  const session = data.session as Session | null
+  // const session = data.session as Session | null
+  const session = true
 
   const navItems = session
     ? [
         { href: '/home', icon: Home, label: 'Home' },
         { href: '/profile', icon: User2, label: 'Profile' },
         { href: '/marketplace', icon: BuildingIcon, label: 'Marketplace' },
-        { href: '/calendar', icon: Calendar, label: 'Calendrier' },
+        { href: '/trades', icon: DoorOpen, label: 'Trades' },
       ]
     : [
         { href: '/login', icon: LogIn, label: 'Login' },
@@ -85,8 +84,6 @@
             {#each navItems as item (item.href)}
               <NavBarItem href={item.href} icon={item.icon} label={item.label} />
             {/each}
-            <NavBarItem href="/trades" icon={DoorOpen} label="Salles" />
-            <NavBarItem href="/calendar" icon={Calendar} label="Calendrier" />
           </nav>
         </Sheet.Content>
       </Sheet.Root>
@@ -127,7 +124,7 @@
           <Dropdown.Item>Paramètres</Dropdown.Item>
           <Dropdown.Item>Support</Dropdown.Item>
           <Dropdown.Separator />
-          <Dropdown.Item on:click={() => signOut()}>Déconnexion</Dropdown.Item>
+          <Dropdown.Item on:click={() => console.log("logout")}>Déconnexion</Dropdown.Item>
         </Dropdown.Content>
       </Dropdown.Root>
     </header>

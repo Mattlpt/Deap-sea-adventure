@@ -13,7 +13,7 @@
   ]
 
   function handleBotClick(id) {
-    window.location.href = `/trads/${id}`
+    window.location.href = `/trades/${id}`
   }
 </script>
 

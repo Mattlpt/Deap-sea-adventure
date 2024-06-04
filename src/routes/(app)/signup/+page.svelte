@@ -3,55 +3,41 @@
   import * as Form from '$lib/components/ui/form'
   import { Input } from '$lib/components/ui/input'
   import { Button } from '$lib/components/ui/button'
-  import { Label } from '$lib/components/ui/label'
   import { LoaderCircle } from 'lucide-svelte'
 
   import github from '$lib/images/github.svg'
   import { H2 } from '$lib/components/ui/typography'
   import type { PageData } from './$types'
+  import { type Infer, superForm, type SuperValidated } from 'sveltekit-superforms'
+  import { emailSchema } from '$lib/form-schema'
+  import { zodClient } from 'sveltekit-superforms/adapters'
 
   let isLoading = false
 
   export let data: PageData
 
-  // const dataform = data.form as SuperValidated<Infer<typeof emailSchema>>
+  const dataform = data.form as SuperValidated<Infer<typeof emailSchema>>
 
-  // const form = superForm(dataform, {
-  //   validators: zodClient(emailSchema),
-  // })
+  const form = superForm(dataform, {
+    validators: zodClient(emailSchema),
+  })
 
-  // const { form: formData, enhance } = form
-  async function onSubmit() {
-    isLoading = true
+  const { form: formData, enhance } = form
 
-    setTimeout(() => {
-      isLoading = false
-    }, 3000)
-  }
 </script>
 
 <div class="flex flex-1 flex-col items-center justify-center">
   <div class="grid w-full gap-6 px-2 sm:w-2/3 lg:w-1/2 xl:w-2/5 2xl:w-1/3">
     <H2 class="text-center">Create an account</H2>
-    <!--      method="POST" use:enhance-->
-    <form on:submit|preventDefault={onSubmit}>
+    <form method="POST" use:enhance>
       <div class="grid gap-2">
-        <!--        <Form.Field {form} name="email">-->
-        <!--          <Form.Control let:attrs>-->
-        <!--            <Form.Label>Email</Form.Label>-->
-        <!--            <Input {...attrs} bind:value={$formData.email} />-->
-        <!--          </Form.Control>-->
-        <!--          <Form.FieldErrors />-->
-        <!--        </Form.Field>-->
-        <Label class="sr-only" for="email">Email</Label>
-        <Input
-          autocapitalize="none"
-          autocomplete="email"
-          autocorrect="off"
-          id="email"
-          placeholder="name@example.com"
-          type="email"
-        />
+        <Form.Field {form} name="email" >
+          <Form.Control let:attrs>
+            <Form.Label>Email</Form.Label>
+            <Input {...attrs} bind:value={$formData.email} placeholder="name@example.com" type="email" />
+          </Form.Control>
+          <Form.FieldErrors />
+        </Form.Field>
         <Button class="w-full" type="submit">
           {#if isLoading}
             <LoaderCircle class="mr-2 h-4 w-4 animate-spin" />
@@ -68,7 +54,7 @@
         <span class="bg-background px-2 text-muted-foreground"> or continue with </span>
       </div>
     </div>
-    <Button class="w-full" disabled={isLoading} variant="outline">
+    <Button class="w-full" disabled={isLoading} on:click={() => console.log("github signup")} variant="outline">
       {#if isLoading}
         <LoaderCircle class="mr-2 h-4 w-4 animate-spin" />
       {:else}

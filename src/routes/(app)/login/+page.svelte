@@ -5,37 +5,27 @@
   import github from '$lib/images/github.svg'
   import { LoaderCircle } from 'lucide-svelte'
   import { H2 } from '$lib/components/ui/typography'
-  import { signIn } from '@auth/sveltekit/client'
-  // import { type Infer, superForm, type SuperValidated } from 'sveltekit-superforms'
-  // import { emailSchema } from '$lib/form-schema'
-  // import { zodClient } from 'sveltekit-superforms/adapters'
+  import { type Infer, superForm, type SuperValidated } from 'sveltekit-superforms'
+  import { emailSchema } from '$lib/form-schema'
+  import { zodClient } from 'sveltekit-superforms/adapters'
+  import type { PageData } from './$types'
 
   let isLoading = false
-  // export let data: PageData
-  //
-  // const dataform = data.form as SuperValidated<Infer<typeof emailSchema>>
-  //
-  // const form = superForm(dataform, {
-  //   validators: zodClient(emailSchema),
-  // })
-  //
-  // const { form: formData, enhance } = form
+  export let data: PageData
 
-  async function onSubmit(credentials) {
-    isLoading = true
-    await signIn('credentials', {
-      email: credentials.email,
-      password: credentials.password,
-      callbackUrl: '/profile',
-    })
-    isLoading = false
-  }
+  const dataform = data.form as SuperValidated<Infer<typeof emailSchema>>
+
+  const form = superForm(dataform, {
+    validators: zodClient(emailSchema),
+  })
+
+  const { form: formData, enhance } = form
 </script>
 
 <div class="flex flex-1 flex-col items-center justify-center">
   <div class="grid w-full gap-6 px-2 sm:w-2/3 lg:w-1/2 xl:w-2/5 2xl:w-1/3">
     <H2 class="text-center">Connection</H2>
-    <form on:submit|preventDefault={onSubmit}>
+    <form method="POST" use:enhance>
       <div class="grid gap-4">
         <div class="grid gap-2">
           <Label for="email">Email</Label>
@@ -63,7 +53,7 @@
     <Button
       class="w-full"
       disabled={isLoading}
-      on:click={() => signIn('github', { callbackUrl: '/profile' })}
+      on:click={() => console.log('github login')}
       variant="outline"
     >
       {#if isLoading}

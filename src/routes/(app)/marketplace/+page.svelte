@@ -1,8 +1,9 @@
 <script lang="ts">
   import { H2 } from '$lib/components/ui/typography'
+  // noinspection ES6UnusedImports
   import * as Card from '$lib/components/ui/card'
   import { Button } from '$lib/components/ui/button'
-  import { supabase } from '$lib/supabaseClient'
+  import supabase from '$lib/supabaseClient'
 
   interface MarketBot {
     id: string
@@ -30,10 +31,8 @@
   }
 
   async function buyBotFromMarketplace(bot: MarketBot) {
-
+    // @TODO: Implement buying bots
     console.log(`Purchased ${bot.name}`);
-
-
   }
 
   fetchMarketplaceBots();

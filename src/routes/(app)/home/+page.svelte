@@ -40,5 +40,5 @@
       </Card.Root>
     {/each}
   </div>
-  <Button href="/trads">See all my bots ></Button>
+  <Button href="/trades">See all my bots ></Button>
 </div>
