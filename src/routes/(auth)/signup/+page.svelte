@@ -18,7 +18,7 @@
 </script>
 
 <div class="grid gap-6 px-2 lg:w-1/2 xl:w-2/5 2xl:w-1/3">
-  <h1 class="px-2 text-3xl font-bold  w-full text-center">Create an account</h1>
+  <h1 class="w-full px-2 text-3xl font-bold text-center">Create an account</h1>
   <form on:submit|preventDefault={onSubmit}>
     <div class="grid gap-2">
       <Label class="sr-only" for="email">Email</Label>
@@ -32,7 +32,7 @@
       />
       <Button class="w-full" type="submit">
         {#if isLoading}
-          <LoaderCircle class="mr-2 h-4 w-4 animate-spin" />
+          <LoaderCircle class="w-4 h-4 mr-2 animate-spin" />
         {/if}
         Sign up with email
       </Button>
@@ -43,19 +43,19 @@
       <span class="w-full border-t" />
     </div>
     <div class="relative flex justify-center text-xs uppercase">
-      <span class="bg-background px-2 text-muted-foreground"> or continue with </span>
+      <span class="px-2 bg-background text-muted-foreground"> or continue with </span>
     </div>
   </div>
   <Button class="w-full" disabled={isLoading} variant="outline">
     {#if isLoading}
-      <LoaderCircle class="mr-2 h-4 w-4 animate-spin" />
+      <LoaderCircle class="w-4 h-4 mr-2 animate-spin" />
     {:else}
       <img alt="GI" height="20px" src={github} width="20px" class="mr-1" />
     {/if}
     GitHub
   </Button>
 
-  <div class="px-8 text-center text-sm text-muted-foreground">
+  <div class="px-8 text-sm text-center text-muted-foreground">
     By clicking continue, you agree to our
     <a class="underline underline-offset-4 hover:text-primary" href="/tos">Terms of Service</a>.
   </div>
