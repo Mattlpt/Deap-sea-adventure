@@ -14,6 +14,7 @@ async function main() {
         name: u.name,
         email: u.email,
         passwordHash: await bcrypt.hash(u.password, 12),
+        emailVerified: new Date(),
       },
     })
     console.log(`Created user ${user.name} with id: ${user.id}`)

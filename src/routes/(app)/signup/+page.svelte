@@ -8,11 +8,12 @@
 
   import github from '$lib/images/github.svg'
   import { H2 } from '$lib/components/ui/typography'
-  import type { PageData } from './$types'
+  // import type { PageData } from './$types'
+  import { signIn } from '@auth/sveltekit/client'
 
   let isLoading = false
 
-  export let data: PageData
+  // export let data: PageData
 
   // const dataform = data.form as SuperValidated<Infer<typeof emailSchema>>
 
@@ -68,7 +69,7 @@
         <span class="bg-background px-2 text-muted-foreground"> or continue with </span>
       </div>
     </div>
-    <Button class="w-full" disabled={isLoading} variant="outline">
+    <Button class="w-full" disabled={isLoading} on:click={() => signIn('github', {callbackUrl: '/profile'})} variant="outline">
       {#if isLoading}
         <LoaderCircle class="mr-2 h-4 w-4 animate-spin" />
       {:else}

@@ -13,7 +13,7 @@
     UserPlus2,
   } from 'lucide-svelte'
 
-  import { resetMode, setMode, toggleMode } from 'mode-watcher'
+  import { resetMode, setMode } from 'mode-watcher'
   import { Button } from '$lib/components/ui/button'
   // noinspection ES6UnusedImports
   import * as Dropdown from '$lib/components/ui/dropdown-menu'
@@ -118,15 +118,10 @@
         <Dropdown.Content align="end">
           <Dropdown.Label>Mon Compte</Dropdown.Label>
           <Dropdown.Separator />
-          <Dropdown.Item on:click={toggleMode}
-            >Mode&nbsp;
-            <span class="hidden dark:inline">claire</span>
-            <span class="dark:hidden">sombre</span>
-          </Dropdown.Item>
           <Dropdown.Item>Paramètres</Dropdown.Item>
           <Dropdown.Item>Support</Dropdown.Item>
           <Dropdown.Separator />
-          <Dropdown.Item on:click={() => signOut()}>Déconnexion</Dropdown.Item>
+          <Dropdown.Item on:click={() => signOut({callbackUrl:'/login'})}>Déconnexion</Dropdown.Item>
         </Dropdown.Content>
       </Dropdown.Root>
     </header>

@@ -2,7 +2,7 @@
   import { H1, H2, H3, List, P, Small } from '$lib/components/ui/typography'
 </script>
 
-<div class="container grid h-full gap-3 py-8">
+<div class="container grid h-screen overflow-scroll gap-3 py-8">
   <H1 class="text-3xl font-bold">Terms of Service</H1>
   <Small>Last updated: May 14, 2024</Small>
   <P>Please read these Terms of Service carefully before using Our Service.</P>
@@ -204,5 +204,5 @@
   </P>
   <H2>Contact Us</H2>
   <P>If you have any questions about these Terms of Service, You can contact us:</P>
-  <P class="pb-8">By email: support@example.com</P>
+  <P>By email: support@example.com</P>
 </div>
