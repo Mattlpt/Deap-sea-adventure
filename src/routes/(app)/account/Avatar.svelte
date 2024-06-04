@@ -4,7 +4,7 @@
 	import { createEventDispatcher } from 'svelte'
 
 	export let size = 10
-	export let url: string
+	export let url: string | undefined
 	export let supabase: SupabaseClient
 
 	let avatarUrl: string | null = null
