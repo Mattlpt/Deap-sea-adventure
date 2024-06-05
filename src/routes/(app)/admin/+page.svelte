@@ -1,12 +1,14 @@
 <script lang="ts">
+  // noinspection ES6UnusedImports
   import * as Table from '$lib/components/ui/table'
   import type { PageData } from './$types'
+  import { H1 } from '$lib/components/ui/typography'
 
   export let data: PageData
 </script>
 
 <div class="flex flex-col items-center gap-4">
-  <h1 class="text-4xl font-bold">Deep Trading</h1>
+  <H1 class="text-4xl font-bold">Deep Trading</H1>
   <Table.Root>
     <Table.Caption>List of users</Table.Caption>
     <Table.Header>

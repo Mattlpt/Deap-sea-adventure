@@ -1,4 +1,5 @@
 <script>
+  import { ModeWatcher } from 'mode-watcher'
   import { page } from '$app/stores'
   import '../app.pcss'
 
@@ -9,4 +10,5 @@
   <title>Deep Trading{title ? ` • ${title}` : ''}</title>
 </svelte:head>
 
+<ModeWatcher />
 <slot />

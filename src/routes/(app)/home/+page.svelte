@@ -1,33 +1,44 @@
 <script lang="ts">
   import { Button } from '$lib/components/ui/button/index'
+  // noinspection ES6UnusedImports
+  import * as Card from '$lib/components/ui/card'
+  import { Muted } from '$lib/components/ui/typography'
+  import { Euro } from 'lucide-svelte'
 
   let sumOfBots = 54321
-  let pinnedBots = ['Bot1', 'Bot2', 'Bot3', 'Bot4']
+  let pinnedBots = [
+    { name: 'Bot1', amount: 45231.89, variation: 13.9 },
+    { name: 'Bot2', amount: 30221.54, variation: 20.1 },
+    { name: 'Bot3', amount: 4231.62, variation: 2.0 },
+    { name: 'Bot4', amount: 5231.95, variation: -0.1 },
+  ]
 </script>
 
-<div class="w-full items-center flex flex-col gap-6">
-  <div class="p-6 rounded-md border-2 w-fit items-center">
-    <div>
-      <h4 class="text-center">Overview of your totals</h4>
-      <h3 class="text-center text-xl font-bold">
-        ${sumOfBots}
-      </h3>
-    </div>
-  </div>
-  <div class="flex flex-row gap-5 w-fit">
+<div class="flex flex-1 flex-col items-center justify-center gap-6">
+  <Card.Root>
+    <Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
+      <Card.Title class="text-md font-medium">Overview of your totals</Card.Title>
+    </Card.Header>
+    <Card.Content>
+      <div class="text-2xl font-bold">{sumOfBots.toLocaleString('fr')}€</div>
+      <Muted class={sumOfBots <= 0 ? 'text-red-700' : 'text-green-600'}>+20.1% from last month</Muted>
+    </Card.Content>
+  </Card.Root>
+  <div class="flex w-fit flex-row gap-5">
     {#each pinnedBots as bot}
-      <div class="px-4 py-3 border-2 w-full flex flex-col rounded-md">
-        <div>
-          {bot}
-        </div>
-        <div class="text-l font-bold">
-          Money gen. €
-        </div>
-        <div>% with last month</div>
-      </div>
+      <Card.Root>
+        <Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
+          <Card.Title class="text-md font-medium">{bot.name}</Card.Title>
+          <Euro class="h-4 w-4 text-muted-foreground" />
+        </Card.Header>
+        <Card.Content>
+          <div class="text-2xl font-bold">{bot.amount.toLocaleString('fr')}€</div>
+          <Muted class={bot.variation <= 0 ? 'text-red-700' : 'text-green-600'}>
+            {bot.variation <= 0 ? '' : '+'}{bot.variation}% from last month
+          </Muted>
+        </Card.Content>
+      </Card.Root>
     {/each}
   </div>
-  <Button href="/trads">
-    See all my bots >
-  </Button>
+  <Button href="/trades">See all my bots ></Button>
 </div>
