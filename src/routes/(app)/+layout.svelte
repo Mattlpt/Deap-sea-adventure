@@ -23,9 +23,11 @@
   import { SearchBar } from '$lib/components/search'
   import { NavBarItem } from '$lib/components/nav-bar-item'
   import { navigating } from '$app/stores'
-  import type { PageData } from './$types'
 
-  export let data: PageData
+  export let data;
+
+  let { supabase } = data
+  $: ({ supabase } = data)
 
   // const session = data.session as Session | null
   const session = true
@@ -124,7 +126,9 @@
           <Dropdown.Item href="/account">Paramètres</Dropdown.Item>
           <Dropdown.Item>Support</Dropdown.Item>
           <Dropdown.Separator />
-          <Dropdown.Item on:click={() => console.log('logout')}>Déconnexion</Dropdown.Item>
+          <Dropdown.Item on:click={() => {
+            supabase.auth.signOut()
+          }}>Déconnexion</Dropdown.Item>
         </Dropdown.Content>
       </Dropdown.Root>
     </header>
