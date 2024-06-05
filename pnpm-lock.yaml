@@ -11,6 +11,24 @@ importers:
       '@alpacahq/alpaca-trade-api':
         specifier: ^3.0.1
         version: 3.0.1
+      '@auth/core':
+        specifier: ^0.31.0
+        version: 0.31.0(nodemailer@6.9.13)
+      '@auth/sveltekit':
+        specifier: ^1.1.0
+        version: 1.2.0(@sveltejs/kit@2.5.10(@sveltejs/vite-plugin-svelte@3.1.1(svelte@4.2.17)(vite@5.2.12(@types/node@20.14.1)))(svelte@4.2.17)(vite@5.2.12(@types/node@20.14.1)))(nodemailer@6.9.13)(svelte@4.2.17)
+      '@supabase/auth-ui-react':
+        specifier: ^0.4.7
+        version: 0.4.7(@supabase/supabase-js@2.43.4)
+      '@supabase/auth-ui-shared':
+        specifier: ^0.1.8
+        version: 0.1.8(@supabase/supabase-js@2.43.4)
+      '@supabase/auth-ui-svelte':
+        specifier: ^0.2.9
+        version: 0.2.9(@supabase/supabase-js@2.43.4)
+      '@supabase/ssr':
+        specifier: ^0.3.0
+        version: 0.3.0(@supabase/supabase-js@2.43.4)
       '@supabase/supabase-js':
         specifier: ^2.43.4
         version: 2.43.4
@@ -754,6 +772,21 @@ packages:
 
   '@supabase/auth-js@2.64.2':
     resolution: {integrity: sha512-s+lkHEdGiczDrzXJ1YWt2y3bxRi+qIUnXcgkpLSrId7yjBeaXBFygNjTaoZLG02KNcYwbuZ9qkEIqmj2hF7svw==}
+
+  '@supabase/auth-ui-react@0.4.7':
+    resolution: {integrity: sha512-Lp4FQGFh7BMX1Y/BFaUKidbryL7eskj1fl6Lby7BeHrTctbdvDbCMjVKS8wZ2rxuI8FtPS2iU900fSb70FHknQ==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.21.0
+
+  '@supabase/auth-ui-shared@0.1.8':
+    resolution: {integrity: sha512-ouQ0DjKcEFg+0gZigFIEgu01V3e6riGZPzgVD0MJsCBNsMsiDT74+GgCEIElMUpTGkwSja3xLwdFRFgMNFKcjg==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.21.0
+
+  '@supabase/auth-ui-svelte@0.2.9':
+    resolution: {integrity: sha512-oc+SRS7ykc5FCssoqT0IiK5KF/obwnWko5ePaaMTDwUEQOavv+O8/poAh2lRTKRJCqJMqOOpMS/lUE6pHcma3g==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.21.0
 
   '@supabase/functions-js@2.3.1':
     resolution: {integrity: sha512-QyzNle/rVzlOi4BbVqxLSH828VdGY1RElqGFAj+XeVypj6+PVtMlD21G8SDnsPQDtlqqTtoGRgdMlQZih5hTuw==}
@@ -4423,6 +4456,26 @@ snapshots:
   '@supabase/auth-js@2.64.2':
     dependencies:
       '@supabase/node-fetch': 2.6.15
+
+  '@supabase/auth-ui-react@0.4.7(@supabase/supabase-js@2.43.4)':
+    dependencies:
+      '@stitches/core': 1.2.8
+      '@supabase/auth-ui-shared': 0.1.8(@supabase/supabase-js@2.43.4)
+      '@supabase/supabase-js': 2.43.4
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@supabase/auth-ui-shared@0.1.8(@supabase/supabase-js@2.43.4)':
+    dependencies:
+      '@supabase/supabase-js': 2.43.4
+
+  '@supabase/auth-ui-svelte@0.2.9(@supabase/supabase-js@2.43.4)':
+    dependencies:
+      '@stitches/core': 1.2.8
+      '@supabase/auth-ui-shared': 0.1.8(@supabase/supabase-js@2.43.4)
+      '@supabase/supabase-js': 2.43.4
+      svelte: 3.59.2
 
   '@supabase/functions-js@2.3.1':
     dependencies:
