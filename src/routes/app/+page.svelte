@@ -9,7 +9,7 @@
   <H1>Deep Trading</H1>
   <P>coming soon...</P>
   <Card.Root>
-    <Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
+    <Card.Header class="flex flex-row items-center justify-between pb-2 space-y-0">
       <Card.Title class="text-base font-normal">Total Revenue</Card.Title>
     </Card.Header>
     <Card.Content>
