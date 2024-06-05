@@ -1,7 +1,11 @@
+// src/routes/+layout.server.ts
 import type { LayoutServerLoad } from './$types'
 
-export const load: LayoutServerLoad = async (/* event */) => {
+export const load = (async ({ locals: { safeGetSession } }) => {
+  const { session, user } = await safeGetSession()
+
   return {
-    // session: await event.locals.auth(),
+    session,
+    user,
   }
-}
+}) satisfies LayoutServerLoad

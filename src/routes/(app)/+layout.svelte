@@ -33,7 +33,7 @@
   const navItems = session
     ? [
         { href: '/home', icon: Home, label: 'Home' },
-        { href: '/profile', icon: User2, label: 'Profile' },
+        { href: '/account', icon: User2, label: 'Account' },
         { href: '/marketplace', icon: BuildingIcon, label: 'Marketplace' },
         { href: '/trades', icon: DoorOpen, label: 'Trades' },
       ]
@@ -48,10 +48,10 @@
 
 <div class="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
   <div class="hidden border-r bg-muted/40 md:block">
-    <div class="flex h-full max-h-screen flex-col gap-2">
+    <div class="flex flex-col h-full max-h-screen gap-2">
       <div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
         <a class="flex items-center gap-2 text-xl font-semibold" href="/">
-          <Building2 class="h-6 w-6" />
+          <Building2 class="w-6 h-6" />
           Deep Trading
         </a>
       </div>
@@ -64,12 +64,12 @@
       </div>
     </div>
   </div>
-  <div class="flex h-screen flex-col">
+  <div class="flex flex-col h-screen">
     <header class="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
       <Sheet.Root bind:open>
         <Sheet.Trigger asChild let:builder>
           <Button builders={[builder]} class="shrink-0 md:hidden" size="icon" variant="outline">
-            <Menu class="h-5 w-5" />
+            <Menu class="w-5 h-5" />
             <span class="sr-only">Afficher/cacher le menu de navigation</span>
           </Button>
         </Sheet.Trigger>
@@ -77,7 +77,7 @@
           <nav class="grid gap-2 text-lg font-medium">
             <div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
               <a class="flex items-center gap-2 text-xl font-semibold" href="/">
-                <Building2 class="h-6 w-6" />
+                <Building2 class="w-6 h-6" />
                 Deep Trading
               </a>
             </div>
@@ -87,7 +87,7 @@
           </nav>
         </Sheet.Content>
       </Sheet.Root>
-      <div class="w-full flex-1">
+      <div class="flex-1 w-full">
         <SearchBar className="md:w-2/3 lg:w-1/2 xl:w-1/3"></SearchBar>
       </div>
       <Dropdown.Root>
@@ -109,7 +109,7 @@
       <Dropdown.Root>
         <Dropdown.Trigger asChild let:builder>
           <Button builders={[builder]} class="rounded-full" size="icon" variant="secondary">
-            <CircleUser class="h-5 w-5" />
+            <CircleUser class="w-5 h-5" />
             <span class="sr-only">Afficher/cacher le menu utilisateur</span>
           </Button>
         </Dropdown.Trigger>
@@ -118,16 +118,18 @@
           <Dropdown.Separator />
           <Dropdown.Item on:click={toggleMode}
             >Mode&nbsp;
-            <span class="hidden dark:inline">claire</span>
+            <span class="hidden dark:inline">clair</span>
             <span class="dark:hidden">sombre</span>
           </Dropdown.Item>
-          <Dropdown.Item>Paramètres</Dropdown.Item>
+          <Dropdown.Item href="/account">Paramètres</Dropdown.Item>
           <Dropdown.Item>Support</Dropdown.Item>
           <Dropdown.Separator />
-          <Dropdown.Item on:click={() => console.log("logout")}>Déconnexion</Dropdown.Item>
+          <Dropdown.Item on:click={() => console.log('logout')}>Déconnexion</Dropdown.Item>
         </Dropdown.Content>
       </Dropdown.Root>
     </header>
-    <slot />
+    <div class="flex-1 overflow-y-auto">
+      <slot />
+    </div>
   </div>
 </div>
