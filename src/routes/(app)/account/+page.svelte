@@ -1,79 +1,97 @@
-<!-- src/routes/account/+page.svelte -->
 <script lang="ts">
-  import { enhance } from '$app/forms'
-  import type { SubmitFunction } from '@sveltejs/kit'
+  import * as Form from '$lib/components/ui/form/index.js'
+  import { Input } from '$lib/components/ui/input/index.js'
+  import { Label } from '$lib/components/ui/label'
+  import { toast } from 'svelte-sonner'
+  import SuperDebug, { superForm } from 'sveltekit-superforms'
+  import { zodClient } from 'sveltekit-superforms/adapters'
+  import type { PageData } from './$types'
   import Avatar from './Avatar.svelte'
+  import { formSchema } from './schema'
 
-  export let data
-  export let form
+  export let data: PageData
 
+  let profileForm: HTMLFormElement
   let { session, supabase, profile } = data
   $: ({ session, supabase, profile } = data)
 
-  let profileForm: HTMLFormElement
-  let loading = false
-  let fullName: string = profile?.full_name ?? ''
-  let username: string = profile?.username ?? ''
-  let website: string = profile?.website ?? ''
-  let avatarUrl: string = profile?.avatar_url ?? ''
+  const super_form = superForm(data.form, {
+    validators: zodClient(formSchema),
+    onUpdated: ({ form: f }) => {
+      if (f.valid) {
+        toast.success(`You submitted ${JSON.stringify(f.data, null, 2)}`)
+      } else {
+        toast.error('Please fix the errors in the form.')
+      }
+    },
+    delayMs: 200,
+    timeoutMs: 5000,
+    resetForm: false,
+  })
 
-  const handleSubmit: SubmitFunction = () => {
-    loading = true
-    return async () => {
-      loading = false
-    }
-  }
-
-  const handleSignOut: SubmitFunction = () => {
-    loading = true
-    return async ({ update }) => {
-      loading = false
-      update()
-    }
-  }
+  const { form: formData, enhance, delayed, timeout } = super_form
 </script>
 
-<div class="form-widget">
-  <form class="form-widget" method="post" action="?/update" use:enhance={handleSubmit} bind:this={profileForm}>
-    <!-- Add to body -->
+<div class="p-5">
+  <form action="?/update" method="POST" class="w-2/3 space-y-6" use:enhance bind:this={profileForm}>
     <Avatar
       {supabase}
-      bind:url={avatarUrl}
+      bind:url={$formData.avatar_url}
       size={10}
       on:upload={() => {
         profileForm.requestSubmit()
       }}
     />
 
-    <!-- Other form elements -->
-    <div>
-      <label for="email">Email</label>
-      <input id="email" type="text" value={session.user.email} disabled />
+    <div class="space-y-2">
+      <Label>Email</Label>
+      <Input type="email" value={data.session.user.email} disabled />
     </div>
 
-    <div>
-      <label for="fullName">Full Name</label>
-      <input id="fullName" name="fullName" type="text" value={form?.fullName ?? fullName} />
-    </div>
+    <Form.Field form={super_form} name="username">
+      <Form.Control let:attrs>
+        <Form.Label>Username</Form.Label>
+        <Input {...attrs} bind:value={$formData.username} />
+      </Form.Control>
+      <Form.Description>This is your public display name.</Form.Description>
+      <Form.FieldErrors />
+    </Form.Field>
 
-    <div>
-      <label for="username">Username</label>
-      <input id="username" name="username" type="text" value={form?.username ?? username} />
-    </div>
+    <Form.Field form={super_form} name="full_name">
+      <Form.Control let:attrs>
+        <Form.Label>Full Name</Form.Label>
+        <Input {...attrs} type="text" bind:value={$formData.full_name} />
+      </Form.Control>
+      <Form.Description>Your name is not visible to others</Form.Description>
+      <Form.FieldErrors />
+    </Form.Field>
 
-    <div>
-      <label for="website">Website</label>
-      <input id="website" name="website" type="url" value={form?.website ?? website} />
-    </div>
+    <Form.Field form={super_form} name="website">
+      <Form.Control let:attrs>
+        <Form.Label>Website</Form.Label>
+        <Input {...attrs} type="url" bind:value={$formData.website} />
+      </Form.Control>
+      <Form.Description>Your personal website, blog, or portfolio</Form.Description>
+      <Form.FieldErrors />
+    </Form.Field>
 
-    <div>
-      <input type="submit" class="block button primary" value={loading ? 'Loading...' : 'Update'} disabled={loading} />
-    </div>
-  </form>
-
-  <form method="post" action="?/signout" use:enhance={handleSignOut}>
-    <div>
-      <button class="block button" disabled={loading}>Sign Out</button>
-    </div>
+    <Form.Button>
+      {#if $delayed}
+        <svg
+          class="w-5 h-5 mr-3 -ml-1 text-dark animate-spin"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+      {/if}
+      Submit
+    </Form.Button>
   </form>
 </div>

@@ -33,7 +33,7 @@
   const navItems = session
     ? [
         { href: '/home', icon: Home, label: 'Home' },
-        { href: '/profile', icon: User2, label: 'Profile' },
+        { href: '/account', icon: User2, label: 'Account' },
         { href: '/marketplace', icon: BuildingIcon, label: 'Marketplace' },
         { href: '/trades', icon: DoorOpen, label: 'Trades' },
       ]
@@ -118,16 +118,18 @@
           <Dropdown.Separator />
           <Dropdown.Item on:click={toggleMode}
             >Mode&nbsp;
-            <span class="hidden dark:inline">claire</span>
+            <span class="hidden dark:inline">clair</span>
             <span class="dark:hidden">sombre</span>
           </Dropdown.Item>
-          <Dropdown.Item>Paramètres</Dropdown.Item>
+          <Dropdown.Item href="/account">Paramètres</Dropdown.Item>
           <Dropdown.Item>Support</Dropdown.Item>
           <Dropdown.Separator />
-          <Dropdown.Item on:click={() => console.log("logout")}>Déconnexion</Dropdown.Item>
+          <Dropdown.Item on:click={() => console.log('logout')}>Déconnexion</Dropdown.Item>
         </Dropdown.Content>
       </Dropdown.Root>
     </header>
-    <slot />
+    <div class="flex-1 overflow-y-auto">
+      <slot />
+    </div>
   </div>
 </div>
