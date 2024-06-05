@@ -1,145 +1,133 @@
 <script lang="ts">
-  import { Button } from '$lib/components/ui/button/index.js'
-  import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js'
-  import { Input } from '$lib/components/ui/input/index.js'
-  import * as Sheet from '$lib/components/ui/sheet/index.js'
-  import CircleUser from 'lucide-svelte/icons/circle-user'
-  import Home from 'lucide-svelte/icons/home'
-  import Menu from 'lucide-svelte/icons/menu'
-  import Package from 'lucide-svelte/icons/package'
-  import Package2 from 'lucide-svelte/icons/package-2'
-  import Search from 'lucide-svelte/icons/search'
-  import ShoppingCart from 'lucide-svelte/icons/shopping-cart'
+  import {
+    Building2,
+    BuildingIcon,
+    CircleUser,
+    DoorOpen,
+    Home,
+    LogIn,
+    Menu,
+    Moon,
+    Sun,
+    User2,
+    UserPlus2,
+  } from 'lucide-svelte'
+
+  import { resetMode, setMode, toggleMode } from 'mode-watcher'
+  import { Button } from '$lib/components/ui/button'
+  // noinspection ES6UnusedImports
+  import * as Dropdown from '$lib/components/ui/dropdown-menu'
+  // noinspection ES6UnusedImports
+  import * as Sheet from '$lib/components/ui/sheet'
+
+  import { SearchBar } from '$lib/components/search'
+  import { NavBarItem } from '$lib/components/nav-bar-item'
+  import { navigating } from '$app/stores'
+  import type { PageData } from './$types'
+
+  export let data: PageData
+
+  // const session = data.session as Session | null
+  const session = true
+
+  const navItems = session
+    ? [
+        { href: '/home', icon: Home, label: 'Home' },
+        { href: '/profile', icon: User2, label: 'Profile' },
+        { href: '/marketplace', icon: BuildingIcon, label: 'Marketplace' },
+        { href: '/trades', icon: DoorOpen, label: 'Trades' },
+      ]
+    : [
+        { href: '/login', icon: LogIn, label: 'Login' },
+        { href: '/signup', icon: UserPlus2, label: 'Signup' },
+      ]
+
+  let open = false
+  $: if ($navigating) open = false
 </script>
 
 <div class="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
   <div class="hidden border-r bg-muted/40 md:block">
     <div class="flex flex-col h-full max-h-screen gap-2">
       <div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
-        <a href="/" class="flex items-center gap-2 font-semibold">
-          <Package2 class="w-6 h-6" />
-          <span class="">Deep Trading</span>
+        <a class="flex items-center gap-2 text-xl font-semibold" href="/">
+          <Building2 class="w-6 h-6" />
+          Deep Trading
         </a>
       </div>
       <div class="flex-1">
         <nav class="grid items-start px-2 text-sm font-medium lg:px-4">
-          <a
-            href="##"
-            class="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary"
-          >
-            <Home class="w-4 h-4" />
-            Dashboard
-          </a>
-          <a
-            href="##"
-            class="flex items-center gap-3 px-3 py-2 transition-all rounded-lg text-muted-foreground hover:text-primary"
-          >
-            <ShoppingCart class="w-4 h-4" />
-            Marketplace
-          </a>
-          <a
-            href="##"
-            class="flex items-center gap-3 px-3 py-2 transition-all rounded-lg bg-muted text-primary hover:text-primary"
-          >
-            <Package class="w-4 h-4" />
-            Products
-          </a>
+          {#each navItems as item (item.href)}
+            <NavBarItem {...item} />
+          {/each}
         </nav>
       </div>
-      <!-- <div class="p-4 mt-auto">
-        <Card.Root data-x-chunk-name="dashboard-02-chunk-0" data-x-chunk-description="A card with a call to action">
-          <Card.Header class="p-2 pt-0 md:p-4">
-            <Card.Title>Upgrade to Pro</Card.Title>
-            <Card.Description>Unlock all features and get unlimited access to our support team.</Card.Description>
-          </Card.Header>
-          <Card.Content class="p-2 pt-0 md:p-4 md:pt-0">
-            <Button size="sm" class="w-full">Upgrade</Button>
-          </Card.Content>
-        </Card.Root>
-      </div> -->
     </div>
   </div>
-  <div class="flex flex-col">
+  <div class="flex flex-col h-screen">
     <header class="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
-      <Sheet.Root>
+      <Sheet.Root bind:open>
         <Sheet.Trigger asChild let:builder>
-          <Button variant="outline" size="icon" class="shrink-0 md:hidden" builders={[builder]}>
+          <Button builders={[builder]} class="shrink-0 md:hidden" size="icon" variant="outline">
             <Menu class="w-5 h-5" />
-            <span class="sr-only">Toggle navigation menu</span>
+            <span class="sr-only">Afficher/cacher le menu de navigation</span>
           </Button>
         </Sheet.Trigger>
-        <Sheet.Content side="left" class="flex flex-col">
+        <Sheet.Content class="flex flex-col" side="left">
           <nav class="grid gap-2 text-lg font-medium">
-            <a href="##" class="flex items-center gap-2 text-lg font-semibold">
-              <Package2 class="w-6 h-6" />
-              <span class="sr-only">Deep Trading</span>
-            </a>
-            <a
-              href="##"
-              class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-            >
-              <Home class="w-5 h-5" />
-              Dashboard
-            </a>
-            <a
-              href="##"
-              class="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
-            >
-              <ShoppingCart class="w-5 h-5" />
-              Orders
-            </a>
-            <a
-              href="##"
-              class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-            >
-              <Package class="w-5 h-5" />
-              Products
-            </a>
+            <div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+              <a class="flex items-center gap-2 text-xl font-semibold" href="/">
+                <Building2 class="w-6 h-6" />
+                Deep Trading
+              </a>
+            </div>
+            {#each navItems as item (item.href)}
+              <NavBarItem href={item.href} icon={item.icon} label={item.label} />
+            {/each}
           </nav>
-          <!-- <div class="mt-auto">
-            <Card.Root>
-              <Card.Header>
-                <Card.Title>Upgrade to Pro</Card.Title>
-                <Card.Description>Unlock all features and get unlimited access to our support team.</Card.Description>
-              </Card.Header>
-              <Card.Content>
-                <Button size="sm" class="w-full">Upgrade</Button>
-              </Card.Content>
-            </Card.Root>
-          </div> -->
         </Sheet.Content>
       </Sheet.Root>
       <div class="flex-1 w-full">
-        <form>
-          <div class="relative">
-            <Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search..."
-              class="w-full pl-8 shadow-none appearance-none bg-background md:w-2/3 lg:w-1/3"
-            />
-          </div>
-        </form>
+        <SearchBar className="md:w-2/3 lg:w-1/2 xl:w-1/3"></SearchBar>
       </div>
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger asChild let:builder>
-          <Button builders={[builder]} variant="secondary" size="icon" class="rounded-full">
-            <CircleUser class="w-5 h-5" />
-            <span class="sr-only">Toggle user menu</span>
+      <Dropdown.Root>
+        <Dropdown.Trigger asChild let:builder>
+          <Button builders={[builder]} size="icon" variant="outline">
+            <Sun class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon
+              class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+            />
+            <span class="sr-only">Toggle theme</span>
           </Button>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content align="end">
-          <DropdownMenu.Label>My Account</DropdownMenu.Label>
-          <DropdownMenu.Separator />
-          <DropdownMenu.Item>Settings</DropdownMenu.Item>
-          <DropdownMenu.Item>Support</DropdownMenu.Item>
-          <DropdownMenu.Separator />
-          <DropdownMenu.Item>Logout</DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Root>
+        </Dropdown.Trigger>
+        <Dropdown.Content align="end">
+          <Dropdown.Item on:click={() => setMode('light')}>Light</Dropdown.Item>
+          <Dropdown.Item on:click={() => setMode('dark')}>Dark</Dropdown.Item>
+          <Dropdown.Item on:click={() => resetMode()}>System</Dropdown.Item>
+        </Dropdown.Content>
+      </Dropdown.Root>
+      <Dropdown.Root>
+        <Dropdown.Trigger asChild let:builder>
+          <Button builders={[builder]} class="rounded-full" size="icon" variant="secondary">
+            <CircleUser class="w-5 h-5" />
+            <span class="sr-only">Afficher/cacher le menu utilisateur</span>
+          </Button>
+        </Dropdown.Trigger>
+        <Dropdown.Content align="end">
+          <Dropdown.Label>Mon Compte</Dropdown.Label>
+          <Dropdown.Separator />
+          <Dropdown.Item on:click={toggleMode}
+            >Mode&nbsp;
+            <span class="hidden dark:inline">claire</span>
+            <span class="dark:hidden">sombre</span>
+          </Dropdown.Item>
+          <Dropdown.Item>Paramètres</Dropdown.Item>
+          <Dropdown.Item>Support</Dropdown.Item>
+          <Dropdown.Separator />
+          <Dropdown.Item on:click={() => console.log("logout")}>Déconnexion</Dropdown.Item>
+        </Dropdown.Content>
+      </Dropdown.Root>
     </header>
-    <main class="flex flex-col justify-center flex-1 h-screen gap-4 p-4 lg:gap-6 lg:p-6">
-      <slot />
-    </main>
+    <slot />
   </div>
 </div>
