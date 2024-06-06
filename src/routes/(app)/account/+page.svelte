@@ -33,6 +33,9 @@
 </script>
 
 <div class="p-5">
+
+  <p>Role: <strong>{profile?.role}</strong></p>
+
   <form action="?/update" method="POST" class="w-2/3 space-y-6" use:enhance bind:this={profileForm}>
     <Avatar
       {supabase}

@@ -10,6 +10,7 @@
     Moon,
     Sun,
     User2,
+    Users,
     UserPlus2,
   } from 'lucide-svelte'
 
@@ -38,12 +39,12 @@
         { href: '/account', icon: User2, label: 'Account' },
         { href: '/marketplace', icon: BuildingIcon, label: 'Marketplace' },
         { href: '/trades', icon: DoorOpen, label: 'Trades' },
+        { href: '/users', icon: Users, label: 'Users'},
       ]
     : [
         { href: '/login', icon: LogIn, label: 'Login' },
         { href: '/signup', icon: UserPlus2, label: 'Signup' },
       ]
-
   let open = false
   $: if ($navigating) open = false
 </script>
