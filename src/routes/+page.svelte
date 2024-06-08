@@ -3,13 +3,12 @@
   import { Auth } from '@supabase/auth-ui-svelte'
   import { ThemeSupa } from '@supabase/auth-ui-shared'
   import * as Card from '$lib/components/ui/card'
-  import Separator from '$lib/components/ui/separator/separator.svelte'
 
   export let data
 </script>
 
 <svelte:head>
-  <title>User Management</title>
+  <title>Login</title>
 </svelte:head>
 
 <div class="flex items-center justify-center w-screen h-screen">
