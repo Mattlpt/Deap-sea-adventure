@@ -8,6 +8,7 @@
   import DataTableCheckbox from './data-table-checkbox.svelte'
   import DataTableWebsiteCell from './data-table-website-cell.svelte'
   import DataTableAvatarCell from './data-table-avatar-cell.svelte'
+  import DataTableRoleCell from './data-table-role-cell.svelte'
 
   export let data
 
@@ -65,6 +66,13 @@
 
       cell: ({ value }) => {
         return createRender(DataTableWebsiteCell, { website: value })
+      },
+    }),
+    table.column({
+      accessor: 'role',
+      header: 'Role',
+      cell: ({ value }) => {
+        return createRender(DataTableRoleCell, { role: value })
       },
     }),
     table.column({

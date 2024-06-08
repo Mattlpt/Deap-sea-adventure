@@ -10,22 +10,25 @@
     Moon,
     Sun,
     User2,
-    Users,
     UserPlus2,
+    Users,
   } from 'lucide-svelte'
 
-  import { resetMode, setMode, toggleMode } from 'mode-watcher'
   import { Button } from '$lib/components/ui/button'
+  import { resetMode, setMode, toggleMode } from 'mode-watcher'
   // noinspection ES6UnusedImports
   import * as Dropdown from '$lib/components/ui/dropdown-menu'
   // noinspection ES6UnusedImports
   import * as Sheet from '$lib/components/ui/sheet'
 
-  import { SearchBar } from '$lib/components/search'
-  import { NavBarItem } from '$lib/components/nav-bar-item'
+  import { goto } from '$app/navigation'
   import { navigating } from '$app/stores'
+  import { NavBarItem } from '$lib/components/nav-bar-item'
+  import { SearchBar } from '$lib/components/search'
+  import DataTableAvatarCell from './users/data-table-avatar-cell.svelte'
+  import Label from '$lib/components/ui/label/label.svelte'
 
-  export let data;
+  export let data
 
   let { supabase } = data
   $: ({ supabase } = data)
@@ -39,13 +42,15 @@
         { href: '/account', icon: User2, label: 'Account' },
         { href: '/marketplace', icon: BuildingIcon, label: 'Marketplace' },
         { href: '/trades', icon: DoorOpen, label: 'Trades' },
-        { href: '/users', icon: Users, label: 'Users'},
+        { href: '/users', icon: Users, label: 'Users' },
       ]
     : [
         { href: '/login', icon: LogIn, label: 'Login' },
         { href: '/signup', icon: UserPlus2, label: 'Signup' },
       ]
+
   let open = false
+
   $: if ($navigating) open = false
 </script>
 
@@ -54,7 +59,7 @@
     <div class="flex flex-col h-full max-h-screen gap-2">
       <div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
         <a class="flex items-center gap-2 text-xl font-semibold" href="/">
-          <Building2 class="w-6 h-6" />
+          <img src="logoDeepTrading.svg" class="w-8 h-8" alt="Logo">
           Deep Trading
         </a>
       </div>
@@ -109,27 +114,34 @@
           <Dropdown.Item on:click={() => resetMode()}>System</Dropdown.Item>
         </Dropdown.Content>
       </Dropdown.Root>
+
       <Dropdown.Root>
         <Dropdown.Trigger asChild let:builder>
           <Button builders={[builder]} class="rounded-full" size="icon" variant="secondary">
-            <CircleUser class="w-5 h-5" />
+            <DataTableAvatarCell avatar_url={data.profile?.avatar_url} full_name={data.profile?.full_name} />
             <span class="sr-only">Afficher/cacher le menu utilisateur</span>
           </Button>
         </Dropdown.Trigger>
-        <Dropdown.Content align="end">
+        <Dropdown.Content align="end" class="w-full max-w-[229px]">
+          <Dropdown.Label>{data.profile?.full_name}</Dropdown.Label>
+          <Dropdown.Label class="-mt-3 text-muted-foreground">#{data.profile?.username}</Dropdown.Label>
           <Dropdown.Label>Mon Compte</Dropdown.Label>
           <Dropdown.Separator />
-          <Dropdown.Item on:click={toggleMode}
-            >Mode&nbsp;
+          <Dropdown.Item class="hover:cursor-pointer" on:click={toggleMode}>
+            Mode&nbsp;
             <span class="hidden dark:inline">clair</span>
             <span class="dark:hidden">sombre</span>
           </Dropdown.Item>
-          <Dropdown.Item href="/account">Paramètres</Dropdown.Item>
-          <Dropdown.Item>Support</Dropdown.Item>
+          <Dropdown.Item class="hover:cursor-pointer" href="/account">Paramètres</Dropdown.Item>
+          <Dropdown.Item class="hover:cursor-pointer">Support</Dropdown.Item>
           <Dropdown.Separator />
-          <Dropdown.Item on:click={() => {
-            supabase.auth.signOut()
-          }}>Déconnexion</Dropdown.Item>
+          <Dropdown.Item
+            class="hover:cursor-pointer"
+            on:click={async () => {
+              await supabase.auth.signOut()
+              goto('/')
+            }}>Déconnexion</Dropdown.Item
+          >
         </Dropdown.Content>
       </Dropdown.Root>
     </header>
