@@ -34,16 +34,12 @@
   }
 
   async function buyBotFromMarketplace(bot: MarketBot) {
-    // @TODO: Implement buying bots
-    console.log(`Purchased ${bot.name}`);
     supabase.from('purchased_bots').insert({
       bot_model: bot.id,
       owner: data.session.user.id
     }).then(() => {
       console.log("Bot purchased successfully")
-    })
-
-
+    });
   }
 
   fetchMarketplaceBots();

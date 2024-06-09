@@ -1,20 +1,41 @@
-<script>
-  let myBots = [
-    { id: 1, name: 'Bot1' },
-    { id: 2, name: 'Bot2' },
-    { id: 3, name: 'Bot3' },
-    { id: 4, name: 'Bot4' },
-    { id: 5, name: 'Bot5' },
-    { id: 6, name: 'Bot6' },
-    { id: 7, name: 'Bot7' },
-    { id: 8, name: 'Bot8' },
-    { id: 9, name: 'Bot9' },
-    { id: 10, name: 'Bot10' },
-  ]
+<script lang="ts">
+
+  export let data;
+  let supabase = data.supabase;
+
+  interface MyBot {
+    id: string
+    name?: string
+    value?: number
+    difference?: number
+  }
+
+
+
+  async function getMyBots(){
+    const { data: botData, error } = await supabase
+      .from('purchased_bots')
+      .select('id')
+      .eq("owner", data.session.user.id);
+
+    if (error) {
+      console.error('Error fetching marketplace bots:', error)
+      return
+    }
+
+    myBots = botData.map((bot: MyBot) => ({
+      id: bot.id,
+    }))
+  }
+
+  let myBots: MyBot[] = [];
+  getMyBots();
 
   function handleBotClick(id) {
     window.location.href = `/trades/${id}`
   }
+
+
 </script>
 
 <div class="flex w-full flex-col items-center">
@@ -22,7 +43,7 @@
     {#each myBots as bot}
       <button class="flex w-1/5 flex-col rounded-md border-2 px-4 py-3" on:click={() => handleBotClick(bot.id)}>
         <div>
-          {bot.name}
+          {bot.id}
         </div>
         <div class="text-l font-bold">Money gen. €</div>
         <div>% with last month</div>
