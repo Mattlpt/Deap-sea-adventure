@@ -2,7 +2,7 @@
   import {
     Building2,
     BuildingIcon,
-    CircleUser,
+    CandlestickChart,
     DoorOpen,
     Home,
     LogIn,
@@ -26,7 +26,6 @@
   import { NavBarItem } from '$lib/components/nav-bar-item'
   import { SearchBar } from '$lib/components/search'
   import DataTableAvatarCell from './users/data-table-avatar-cell.svelte'
-  import Label from '$lib/components/ui/label/label.svelte'
 
   export let data
 
@@ -39,10 +38,12 @@
   const navItems = session
     ? [
         { href: '/home', icon: Home, label: 'Home' },
+        { href: '/trade', icon: CandlestickChart, label: 'Trade' },
         { href: '/account', icon: User2, label: 'Account' },
+        { href: '/users', icon: Users, label: 'Users' },
+        { href: '/register', icon: UserPlus2, label: 'Register' },
         { href: '/marketplace', icon: BuildingIcon, label: 'Marketplace' },
         { href: '/trades', icon: DoorOpen, label: 'Trades' },
-        { href: '/users', icon: Users, label: 'Users' },
       ]
     : [
         { href: '/login', icon: LogIn, label: 'Login' },
@@ -59,7 +60,7 @@
     <div class="flex flex-col h-full max-h-screen gap-2">
       <div class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
         <a class="flex items-center gap-2 text-xl font-semibold" href="/">
-          <img src="logoDeepTrading.svg" class="w-8 h-8" alt="Logo">
+          <img src="/logoDeepTrading.svg" class="w-8 h-8" alt="Logo" />
           Deep Trading
         </a>
       </div>

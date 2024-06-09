@@ -15,7 +15,7 @@
   <Card.Root class="w-full max-w-sm">
 		<Card.Header>
 			<Card.Title class="flex items-center gap-2 text-2xl">
-				<img src="logoDeepTrading.svg" class="w-12 h-12" alt="Logo">
+				<img src="/logoDeepTrading.svg" class="w-12 h-12" alt="Logo">
 				Deep Trading
 			</Card.Title>
 			<Card.Description>Enter your email below to login to your account.</Card.Description>
