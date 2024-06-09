@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { symbol } from 'zod'
   import type { PageData } from './$types'
   import Asset from './Asset.svelte'
 
@@ -13,5 +14,7 @@
 <h1>Trading page find all assets</h1>
 
 {#each displayedAssets as asset}
-  <Asset {asset} />
+  <a href="/trade/{asset.symbol}">
+    <Asset {asset} />
+  </a>
 {/each}
