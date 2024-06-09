@@ -1,0 +1,1 @@
+<h1>Trading page find all assets</h1>
