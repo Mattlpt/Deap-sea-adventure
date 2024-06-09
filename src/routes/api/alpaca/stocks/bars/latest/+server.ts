@@ -10,7 +10,9 @@ const alpaca = new Alpaca({
 })
 
 export const GET: RequestHandler = async ({ url }) => {
-  const bars = alpaca.getBarsV2('AAPL', {
+  const symbol = url.searchParams.get('symbols')
+
+  const bars = alpaca.getBarsV2(symbol, {
     start: '2024-06-05',
     end: '2024-06-08',
     timeframe: alpaca.newTimeframe(30, alpaca.timeframeUnit.MIN),

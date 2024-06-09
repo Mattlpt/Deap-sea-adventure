@@ -10,7 +10,7 @@
   }
 
   async function getBars() {
-    const res = await fetch('/api/alpaca/stocks/bars/latest')
+    const res = await fetch(`/api/alpaca/stocks/bars/latest?symbols=${asset.symbol}`)
     const bars = await res.json()
 
     const values = bars.map((bar: any, index: number) => ({
