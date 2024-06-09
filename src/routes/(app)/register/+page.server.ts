@@ -13,6 +13,10 @@ export const load: PageServerLoad = async ({ parent }) => {
     return redirect(300, '/')
   }
 
+  if (profile?.alpaca_account_id) {
+    return redirect(300, '/account/alpaca')
+  }
+
   const form_data = {
     contact: {
       email_address: 'laughing_thompson@example.com',

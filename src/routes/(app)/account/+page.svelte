@@ -8,6 +8,7 @@
   import type { PageData } from './$types'
   import Avatar from './Avatar.svelte'
   import { formSchema } from './schema'
+  import { Button } from '$lib/components/ui/button'
 
   export let data: PageData
 
@@ -35,6 +36,8 @@
 <div class="p-5">
 
   <p>Role: <strong>{profile?.role}</strong></p>
+
+  <Button href="/account/alpaca">Voir mon compte alpaca</Button>
 
   <form action="?/update" method="POST" class="w-2/3 space-y-6" use:enhance bind:this={profileForm}>
     <Avatar
