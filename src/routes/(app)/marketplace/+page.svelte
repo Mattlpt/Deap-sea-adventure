@@ -16,7 +16,7 @@
   async function fetchMarketplaceBots() {
     const { data, error } = await supabase
       .from('marketplace')
-      .select('id, name, price')
+      .select('id, name, price');
 
     if (error) {
       console.error('Error fetching marketplace bots:', error)
@@ -28,6 +28,7 @@
       name: bot.name,
       price: bot.price,
     }))
+
   }
 
   async function buyBotFromMarketplace(bot: MarketBot) {
