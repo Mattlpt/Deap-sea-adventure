@@ -5,7 +5,7 @@
   import { H1, H3, Muted, P } from '$lib/components/ui/typography'
 </script>
 
-<div class="flex flex-1 flex-col items-center justify-center gap-4 overflow-scroll">
+<div class="flex flex-col items-center justify-center flex-1 gap-4 overflow-scroll">
   <H1>Deep Trading</H1>
   <P>coming soon...</P>
   <Card.Root>
@@ -16,7 +16,7 @@
       <H3>$15,231.89</H3>
       <Muted>+20.1% from last month</Muted>
       <div class="h-[80px]">
-        <Revenue />
+        <!-- <Revenue /> -->
       </div>
     </Card.Content>
   </Card.Root>

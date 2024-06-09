@@ -2,14 +2,13 @@
   import {
     Building2,
     BuildingIcon,
-    CircleUser,
+    CandlestickChart,
     DoorOpen,
     Home,
     LogIn,
     Menu,
     Moon,
     Sun,
-    User,
     User2,
     UserPlus2,
     Users,
@@ -27,7 +26,6 @@
   import { NavBarItem } from '$lib/components/nav-bar-item'
   import { SearchBar } from '$lib/components/search'
   import DataTableAvatarCell from './users/data-table-avatar-cell.svelte'
-  import Label from '$lib/components/ui/label/label.svelte'
 
   export let data
 
@@ -40,9 +38,10 @@
   const navItems = session
     ? [
         { href: '/home', icon: Home, label: 'Home' },
+        { href: '/trade', icon: CandlestickChart, label: 'Trade' },
         { href: '/account', icon: User2, label: 'Account' },
         { href: '/users', icon: Users, label: 'Users' },
-        { href: '/register', icon: UserPlus2, label: 'Register'},
+        { href: '/register', icon: UserPlus2, label: 'Register' },
         { href: '/marketplace', icon: BuildingIcon, label: 'Marketplace' },
         { href: '/trades', icon: DoorOpen, label: 'Trades' },
       ]
