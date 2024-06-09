@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ parent }) => {
   }
 
   if (profile?.alpaca_account_id) {
-    return redirect(300, '/account/alpaca')
+    return redirect(300, '/settings/alpaca')
   }
 
   const form_data = {
