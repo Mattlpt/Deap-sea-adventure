@@ -8,6 +8,7 @@
     LogIn,
     Menu,
     Moon,
+    Settings,
     Sun,
     User2,
     UserPlus2,
@@ -39,8 +40,9 @@
     ? [
         { href: '/home', icon: Home, label: 'Home' },
         { href: '/trade', icon: CandlestickChart, label: 'Trade' },
-        { href: '/account', icon: User2, label: 'Account' },
         { href: '/users', icon: Users, label: 'Users' },
+        { href: '/settings', icon: Settings, label: 'Settings' },
+
         { href: '/register', icon: UserPlus2, label: 'Register' },
         { href: '/marketplace', icon: BuildingIcon, label: 'Marketplace' },
         { href: '/trades', icon: DoorOpen, label: 'Trades' },
@@ -133,7 +135,7 @@
             <span class="hidden dark:inline">clair</span>
             <span class="dark:hidden">sombre</span>
           </Dropdown.Item>
-          <Dropdown.Item class="hover:cursor-pointer" href="/account">Paramètres</Dropdown.Item>
+          <Dropdown.Item class="hover:cursor-pointer" href="/settings">Paramètres</Dropdown.Item>
           <Dropdown.Item class="hover:cursor-pointer">Support</Dropdown.Item>
           <Dropdown.Separator />
           <Dropdown.Item
